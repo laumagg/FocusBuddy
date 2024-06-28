@@ -62,6 +62,8 @@ public class PassthroughController : MonoBehaviour
     private void SpawnNewFocusArea()
     {
         if (!focusAreaPrefab) return;
+        if (overlayPt.enabled == false) 
+            overlayPt.enabled = true;
 
         Vector3 pos = focusAreaUI.transform.position;
         pos.x += 1;
