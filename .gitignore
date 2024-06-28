@@ -87,3 +87,5 @@ plugins/ARFoundationRemoteSource
 MSBuildForUnity.Common.props
 *.msb4u.*
 /Choreographic-Plant-Room_clone_0
+
+APIKey.txt
