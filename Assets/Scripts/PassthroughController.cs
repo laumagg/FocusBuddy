@@ -1,3 +1,4 @@
+using Oculus.Interaction;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -15,15 +16,15 @@ public class PassthroughController : MonoBehaviour
     [SerializeField] private GameObject focusAreaPrefab;
 
     [Header("Others")]
-    [SerializeField] private SettingsUI focusAreaUI;
+    [SerializeField] private SettingsUI settingsUI;
 
     private List<GameObject> _focusAreas = new();
 
     private void OnEnable()
     {
-        focusAreaUI.OnMoreOpacity.AddListener(() => OnChangeOpacity_Toggle(true));
-        focusAreaUI.OnLessOpacity.AddListener(() => OnChangeOpacity_Toggle(false));
-        focusAreaUI.OnAddFocusArea.AddListener(SpawnNewFocusArea);
+        settingsUI.OnMoreOpacity.AddListener(() => OnChangeOpacity_Toggle(true));
+        settingsUI.OnLessOpacity.AddListener(() => OnChangeOpacity_Toggle(false));
+        settingsUI.OnAddFocusArea.AddListener(SpawnNewFocusArea);
         //TODO trigger changing opacity from Pomodoro timer
     }
     private void Start()
@@ -62,13 +63,23 @@ public class PassthroughController : MonoBehaviour
     private void SpawnNewFocusArea()
     {
         if (!focusAreaPrefab) return;
-        if (overlayPt.enabled == false) 
+        if (overlayPt.enabled == false)
             overlayPt.enabled = true;
 
-        Vector3 pos = focusAreaUI.transform.position;
+        Vector3 pos = settingsUI.transform.position;
         pos.x += 1;
         GameObject newArea = Instantiate(focusAreaPrefab, pos, Quaternion.identity);
+        if (newArea.TryGetComponent(out FocusAreaEraser eraser))
+        {
+            eraser.ButtonWrapper.WhenRelease.AddListener((PointerEvent e) => RemoveFocusArea(newArea));
+        }
+
         _focusAreas.Add(newArea);
+
+    }
+    private void RemoveFocusArea(GameObject focusArea)
+    {
+        _focusAreas.Remove(focusArea);
     }
 
     #endregion
