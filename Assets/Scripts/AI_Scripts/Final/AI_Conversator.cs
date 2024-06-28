@@ -52,7 +52,7 @@ public class AI_Conversator : AI_Base
 
     public async Task<string> CreateRequest(ChatCompletionMessage[] messages)
     {
-        string model = FromChatModel(ChatModel.ChatGPT3).ModelName;
+        string model = Model.FromChatModel(ChatModel.ChatGPT4).ModelName;
 
         ChatCompletionRequest requestData = new ChatCompletionRequest
         {
@@ -87,19 +87,6 @@ public class AI_Conversator : AI_Base
         }
 
         return null;
-    }
-
-
-    public static Model FromChatModel(ChatModel model)
-    {
-        return model switch
-        {
-            ChatModel.ChatGPT3 => new Model("gpt-3.5-turbo"),
-            ChatModel.ChatGPT4 => new Model("gpt-4"),
-            ChatModel.ChatGPT432K => new Model("gpt-4-32k"),
-            ChatModel.ChatGPT316K => new Model("gpt-3.5-turbo-16k"),
-            _ => throw new ArgumentOutOfRangeException(nameof(model), model, null)
-        };
     }
 
 }

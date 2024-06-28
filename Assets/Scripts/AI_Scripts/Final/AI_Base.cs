@@ -11,9 +11,9 @@ public class AI_Base : MonoBehaviour
     public const string urlSpeechToText = "https://api.openai.com/v1/audio/transcriptions";
     protected string apiKey;
 
-    protected void Start()
+    protected async void Start()
     {
-        apiKey = APIKeyManager.GetAPIKey();
+        apiKey = await APIKeyManager.GetAPIKeyAsync();
         Debug.LogError(apiKey);
     }
 
