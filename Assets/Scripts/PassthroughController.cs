@@ -15,7 +15,7 @@ public class PassthroughController : MonoBehaviour
     [SerializeField] private GameObject focusAreaPrefab;
 
     [Header("Others")]
-    [SerializeField] private FocusAreaUI focusAreaUI;
+    [SerializeField] private SettingsUI focusAreaUI;
 
     private List<GameObject> _focusAreas = new();
 

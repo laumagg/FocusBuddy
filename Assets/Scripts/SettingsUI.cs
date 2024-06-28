@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class FocusAreaUI : MonoBehaviour
+public class SettingsUI : MonoBehaviour
 {
     //Variables
     [SerializeField] private Toggle opacityPlusToggle;
