@@ -17,9 +17,9 @@ public static class APIKeyManager
 
     private static void Initialize()
     {
-        // Der relative Pfad zur Textdatei im Unterordner
-        string relativePath = "Config/APIKey.txt";
-        string path = Path.Combine(Application.dataPath, relativePath);
+        // Der relative Pfad zur Textdatei im StreamingAssets Unterordner
+        string relativePath = "APIKey.txt";
+        string path = Path.Combine(Application.streamingAssetsPath, relativePath);
 
         if (File.Exists(path))
         {

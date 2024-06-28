@@ -9,7 +9,13 @@ public class AI_Base : MonoBehaviour
     protected string urlTextToSpeech = "https://api.openai.com/v1/audio/speech";
     public const string urlChatCompletion = "https://api.openai.com/v1/chat/completions";
     public const string urlSpeechToText = "https://api.openai.com/v1/audio/transcriptions";
-    protected string apiKey = APIKeyManager.GetAPIKey();
+    protected string apiKey;
+
+    protected void Start()
+    {
+        apiKey = APIKeyManager.GetAPIKey();
+        Debug.LogError(apiKey);
+    }
 
     public static double Temperature { get; set; } = 0.1;
 
