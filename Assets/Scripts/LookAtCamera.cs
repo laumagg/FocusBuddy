@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class LookAtCamera : MonoBehaviour
 {
+    [SerializeField] private bool onlyOnStart = false;
     private Transform target;
     private void Init()
     {
@@ -10,10 +11,15 @@ public class LookAtCamera : MonoBehaviour
 
     private void Update()
     {
-        if (target == null) 
+        if (target == null)
             Init();
 
         if (target != null)
+        {
             transform.LookAt(2 * transform.position - target.position);
+
+            if (onlyOnStart)
+                enabled = false;
+        }
     }
 }

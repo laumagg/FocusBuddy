@@ -73,21 +73,28 @@ public class PassthroughController : MonoBehaviour
 
         if (newArea.TryGetComponent(out FocusAreaUI areaUI))
         {
-            areaUI.SaveButtonWrapper.WhenRelease.AddListener((PointerEvent e) => RemoveFocusArea(areaUI));
-            _focusAreas.Add(areaUI);
+            areaUI.SaveButtonWrapper.WhenRelease.AddListener((PointerEvent e) => SaveFocusArea(areaUI));
+            areaUI.RemoveButtonWrapper.WhenRelease.AddListener((PointerEvent e) => RemoveFocusArea(areaUI));
         }
 
 
     }
+    private void SaveFocusArea(FocusAreaUI focusArea)
+    {
+        _focusAreas.Add(focusArea);
+        // Create Anchors?
+    }
     private void RemoveFocusArea(FocusAreaUI focusArea)
     {
         _focusAreas.Remove(focusArea);
+        //Remove Anchors?
     }
     private void RemoveAllFocusAreas()
     {
         foreach (FocusAreaUI areaUI in _focusAreas)
         {
             areaUI.RemoveSelf(new());
+            //Remove Anchors?
         }
         _focusAreas.Clear();
     }
