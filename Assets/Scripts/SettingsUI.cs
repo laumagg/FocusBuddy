@@ -5,62 +5,34 @@ using UnityEngine.Events;
 public class SettingsUI : MonoBehaviour
 {
     //Variables
-    [SerializeField] private PointableUnityEventWrapper opacityPlusWrapper;
-    [SerializeField] private PointableUnityEventWrapper opacityMinusWrapper;
-    [SerializeField] private PointableUnityEventWrapper addFocusAreaWrapper;
-    [SerializeField] private PointableUnityEventWrapper resetFocusAreasWrapper;
-    [SerializeField] private PointableUnityEventWrapper saveAllFocusAreasWrapper;
+    [SerializeField] private PokeInteractable addFocusAreaInteractable;
+    [SerializeField] private PokeInteractable resetFocusAreasInteractable;
+    [SerializeField] private PokeInteractable saveAllFocusAreasInteractable;
 
     //Events
-    [HideInInspector] public UnityEvent OnMoreOpacity = new();
-    [HideInInspector] public UnityEvent OnLessOpacity = new();
     [HideInInspector] public UnityEvent OnAddFocusArea = new();
     [HideInInspector] public UnityEvent OnSaveAllFocusAreas = new();
     [HideInInspector] public UnityEvent OnResetAllFocusAreas = new();
 
     private void OnEnable()
     {
-        //Optional
-        if (opacityPlusWrapper != null)
-            opacityPlusWrapper.WhenRelease.AddListener((PointerEvent v) => SendEvent(0));
-        if (opacityMinusWrapper != null)
-            opacityMinusWrapper.WhenRelease.AddListener((PointerEvent v) => SendEvent(1));
-
-
-        addFocusAreaWrapper.WhenSelect.AddListener((PointerEvent v) => SendEvent(2));
-        saveAllFocusAreasWrapper.WhenRelease.AddListener((PointerEvent v) => SendEvent(3));
-        resetFocusAreasWrapper.WhenRelease.AddListener((PointerEvent v) => SendEvent(4));
+        addFocusAreaInteractable.WhenStateChanged += OnAddFocusAreaPoked;
+        resetFocusAreasInteractable.WhenStateChanged += OnResetFocusAreasPoked;
+        saveAllFocusAreasInteractable.WhenStateChanged += OnSaveFocusAreasPoked;
     }
-
-    private void SendEvent(int index)
+    private void OnAddFocusAreaPoked(InteractableStateChangeArgs args)
     {
-        switch (index)
-        {
-            case 0: OnMoreOpacity?.Invoke(); break;
-            case 1: OnLessOpacity?.Invoke(); break;
-            case 2: OnAddFocusArea?.Invoke(); break;
-            case 3: OnSaveAllFocusAreas?.Invoke(); break;
-            case 4: OnResetAllFocusAreas?.Invoke(); break;
-        }
+        if (args.NewState == InteractableState.Select)
+            OnAddFocusArea?.Invoke();
     }
-
-    #region Testing
-    [ContextMenu("Reset")]
-    public void ResetFocusAreas_ButtonClick()
+    private void OnResetFocusAreasPoked(InteractableStateChangeArgs args)
     {
-        SendEvent(4);
+        if (args.NewState == InteractableState.Select)
+            OnResetAllFocusAreas?.Invoke();
     }
-
-    [ContextMenu("Save")]
-    public void SaveFocusAreas_ButtonClick()
+    private void OnSaveFocusAreasPoked(InteractableStateChangeArgs args)
     {
-        SendEvent(3);
+        if (args.NewState == InteractableState.Select)
+            OnSaveAllFocusAreas?.Invoke();
     }
-
-    [ContextMenu("Add")]
-    public void AddFocusArea_ButtonClick()
-    {
-        SendEvent(2);
-    }
-    #endregion
 }

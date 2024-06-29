@@ -4,34 +4,35 @@ using UnityEngine;
 public class FocusAreaUI : MonoBehaviour
 {
     public GameObject PTSurface;
-    public PointableUnityEventWrapper SaveButtonWrapper;
-    public PointableUnityEventWrapper RemoveButtonWrapper;
+    public PokeInteractable SaveButtonWrapper;
+    public PokeInteractable RemoveButtonWrapper;
 
-    [SerializeField] private GameObject scalersParent;
     [SerializeField] private GameObject sideButtonsParent;
     [SerializeField] private MeshRenderer mover;
 
     private void OnEnable()
     {
-        SaveButtonWrapper.WhenRelease.AddListener(SaveSelf);
-        RemoveButtonWrapper.WhenRelease.AddListener(RemoveSelf);
+        SaveButtonWrapper.WhenStateChanged += SaveSelf;
+        RemoveButtonWrapper.WhenStateChanged += RemoveSelf;
     }
     private void OnDisable()
     {
-        SaveButtonWrapper.WhenRelease.RemoveListener(SaveSelf);
-        RemoveButtonWrapper.WhenRelease.RemoveListener(RemoveSelf);
+        SaveButtonWrapper.WhenStateChanged -= SaveSelf;
+        RemoveButtonWrapper.WhenStateChanged -= RemoveSelf;
     }
 
 
-    public void RemoveSelf(PointerEvent e)
+    public void RemoveSelf(InteractableStateChangeArgs args)
     {
         //Remove anchors?
-        Destroy(gameObject, .3f);
+        if (args.NewState == InteractableState.Select)
+            Destroy(gameObject, .3f);
     }
-    public void SaveSelf(PointerEvent e)
+    public void SaveSelf(InteractableStateChangeArgs args)
     {
         //Create anchors?
-        scalersParent.SetActive(false);
+        if (args.NewState != InteractableState.Select) return;
+
         sideButtonsParent.SetActive(false);
         mover.enabled = false;
     }

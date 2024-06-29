@@ -36,8 +36,6 @@ public class PassthroughController : MonoBehaviour
     private void OnEnable()
     {
         //TODO trigger changing opacity from Pomodoro timer
-        settingsUI.OnMoreOpacity.AddListener(() => OnChangeOpacity_Toggle(true));
-        settingsUI.OnLessOpacity.AddListener(() => OnChangeOpacity_Toggle(false));
         settingsUI.OnAddFocusArea.AddListener(SpawnNewFocusArea);
         settingsUI.OnResetAllFocusAreas.AddListener(RemoveAllFocusAreas);
         settingsUI.OnSaveAllFocusAreas.AddListener(SaveFocusAreas);
