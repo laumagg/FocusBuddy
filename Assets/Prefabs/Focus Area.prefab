@@ -105,8 +105,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.0000006, z: 1.0000006}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.0015541967, y: 0.0015533459, z: 0.0003038343}
+  m_Center: {x: -0.00062387984, y: 0.0006247321, z: -3.929017e-10}
 --- !u!114 &5433103875526725465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,8 +267,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.0000006, z: 1.0000006}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.0015541964, y: 0.0015533456, z: 0.0003038343}
+  m_Center: {x: -0.00062387966, y: 0.00062473194, z: -3.929017e-10}
 --- !u!114 &1836218983878898791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,8 +734,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.0000006, z: 1.0000006}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.0020192629, y: 0.00030388279, z: 0.00030383246}
+  m_Center: {x: -0.0000032932148, y: 5.2386906e-10, z: 5.7480076e-10}
 --- !u!114 &287097021546564298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -883,6 +883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onlyOnStart: 1
+  reversed: 0
 --- !u!1 &5737003060729941988
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,8 +989,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.0000006, z: 1.0000006}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.0015541967, y: 0.0015533459, z: 0.0003038343}
+  m_Center: {x: -0.00062387984, y: 0.0006247321, z: -3.929017e-10}
 --- !u!114 &6748690517527441162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1150,8 +1151,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.0000006, z: 1.0000006}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.0015541964, y: 0.0015533456, z: 0.0003038343}
+  m_Center: {x: -0.00062387966, y: 0.00062473194, z: -3.929017e-10}
 --- !u!114 &6425400388342878558
 MonoBehaviour:
   m_ObjectHideFlags: 0

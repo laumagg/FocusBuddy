@@ -36,11 +36,11 @@ public class SettingsUI : MonoBehaviour
     {
         switch (index)
         {
-            case 0: OnMoreOpacity.Invoke(); break;
-            case 1: OnLessOpacity.Invoke(); break;
-            case 2: OnAddFocusArea.Invoke(); break;
-            case 3: OnSaveAllFocusAreas.Invoke(); break;
-            case 4: OnResetAllFocusAreas.Invoke(); break;
+            case 0: OnMoreOpacity?.Invoke(); break;
+            case 1: OnLessOpacity?.Invoke(); break;
+            case 2: OnAddFocusArea?.Invoke(); break;
+            case 3: OnSaveAllFocusAreas?.Invoke(); break;
+            case 4: OnResetAllFocusAreas?.Invoke(); break;
         }
     }
 
@@ -50,11 +50,17 @@ public class SettingsUI : MonoBehaviour
     {
         SendEvent(4);
     }
+
+    [ContextMenu("Save")]
+    public void SaveFocusAreas_ButtonClick()
+    {
+        SendEvent(3);
+    }
+
     [ContextMenu("Add")]
     public void AddFocusArea_ButtonClick()
     {
         SendEvent(2);
     }
-
     #endregion
 }

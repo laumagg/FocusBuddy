@@ -16,16 +16,23 @@ public class FocusAreaUI : MonoBehaviour
     {
         RemoveButtonWrapper.WhenRelease.RemoveListener(RemoveSelf);
     }
+
+
     public void RemoveSelf(PointerEvent e)
     {
         //Remove anchors?
-
-        Destroy(this, .5f);
+        Destroy(gameObject, .5f);
     }
-    private void SaveSelf(PointerEvent e)
+    public void SaveSelf(PointerEvent e)
     {
-        uiParent.gameObject.SetActive(false);
-
         //Create anchors?
+        uiParent.gameObject.SetActive(false);
     }
+
+    #region Testing
+    [ContextMenu("RemoveSelf_CM")]
+    public void RemoveSelf_CM() { RemoveSelf(new()); }
+    [ContextMenu("SaveSelf_CM")]
+    public void SaveSelf_CM() { SaveSelf(new()); }
+    #endregion
 }

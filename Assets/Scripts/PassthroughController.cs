@@ -1,4 +1,5 @@
 using Oculus.Interaction;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,8 +8,9 @@ using UnityEngine;
 public class PassthroughController : MonoBehaviour
 {
     [Header("Underlay Passthrough")]
+    [SerializeField] private bool startInVR = true;
     [SerializeField] private OVRPassthroughLayer underlayPt;
-    [SerializeField] private float startOpacity = 0.5f;
+    [SerializeField] private float defaultOpacity = 0.7f;
     [SerializeField] private float transitionSpeed = 0.1f;
 
     [Header("Overlay Passthrough")]
@@ -19,7 +21,18 @@ public class PassthroughController : MonoBehaviour
     [SerializeField] private SettingsUI settingsUI;
 
     private List<FocusAreaUI> _focusAreas = new();
-    public int ActiveFocusAreas => _focusAreas.Count;
+
+    private void Start()
+    {
+        overlayPt.enabled = false;
+        underlayPt.enabled = startInVR;
+        if (startInVR)
+        {
+            underlayPt.textureOpacity = 1;
+            StartCoroutine(ChangeOpacity(defaultOpacity));
+        }
+
+    }
     private void OnEnable()
     {
         //TODO trigger changing opacity from Pomodoro timer
@@ -27,14 +40,9 @@ public class PassthroughController : MonoBehaviour
         settingsUI.OnLessOpacity.AddListener(() => OnChangeOpacity_Toggle(false));
         settingsUI.OnAddFocusArea.AddListener(SpawnNewFocusArea);
         settingsUI.OnResetAllFocusAreas.AddListener(RemoveAllFocusAreas);
+        settingsUI.OnSaveAllFocusAreas.AddListener(SaveFocusAreas);
     }
-    private void Start()
-    {
-        if (underlayPt == null) return;
 
-        underlayPt.enabled = true;
-        underlayPt.textureOpacity = startOpacity;
-    }
     #region Underlay PT
     private void OnChangeOpacity_Toggle(bool increase)
     {
@@ -64,8 +72,7 @@ public class PassthroughController : MonoBehaviour
     private void SpawnNewFocusArea()
     {
         if (!focusAreaPrefab) return;
-        if (overlayPt.enabled == false)
-            overlayPt.enabled = true;
+        overlayPt.enabled = true;
 
         Vector3 pos = settingsUI.transform.position;
         pos.x += 1;
@@ -73,30 +80,36 @@ public class PassthroughController : MonoBehaviour
 
         if (newArea.TryGetComponent(out FocusAreaUI areaUI))
         {
-            areaUI.SaveButtonWrapper.WhenRelease.AddListener((PointerEvent e) => SaveFocusArea(areaUI));
             areaUI.RemoveButtonWrapper.WhenRelease.AddListener((PointerEvent e) => RemoveFocusArea(areaUI));
+            _focusAreas.Add(areaUI);
         }
 
+    }
 
-    }
-    private void SaveFocusArea(FocusAreaUI focusArea)
+    private void SaveFocusAreas()
     {
-        _focusAreas.Add(focusArea);
-        // Create Anchors?
+        //Anchoring
+        foreach (FocusAreaUI areaUI in _focusAreas)
+        {
+            if (areaUI != null)
+                areaUI.SaveSelf(new());
+        }
     }
+
     private void RemoveFocusArea(FocusAreaUI focusArea)
     {
         _focusAreas.Remove(focusArea);
-        //Remove Anchors?
+        if (_focusAreas.Count == 0) overlayPt.enabled = false;
     }
     private void RemoveAllFocusAreas()
     {
         foreach (FocusAreaUI areaUI in _focusAreas)
         {
-            areaUI.RemoveSelf(new());
-            //Remove Anchors?
+            if (areaUI != null)
+                areaUI.RemoveSelf(new());
         }
         _focusAreas.Clear();
+        overlayPt.enabled = false;
     }
 
     #endregion
