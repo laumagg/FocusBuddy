@@ -43,4 +43,13 @@ public class SettingsUI : MonoBehaviour
             case 4: OnResetAllFocusAreas.Invoke(); break;
         }
     }
+
+    #region Testing
+    [ContextMenu("Add")]
+    public void AddFocusArea_ButtonClick()
+    {
+        SendEvent(2);
+    }
+
+    #endregion
 }

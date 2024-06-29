@@ -472,6 +472,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4509546759565726089}
   - component: {fileID: 147881672239032696}
+  - component: {fileID: 1520215144205310403}
   m_Layer: 0
   m_Name: Focus Area
   m_TagString: Untagged
@@ -487,7 +488,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5236673529507389065}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -499,7 +500,7 @@ Transform:
   - {fileID: 8667117897669594348}
   - {fileID: 3819731645484896452}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &147881672239032696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,6 +515,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SaveButtonWrapper: {fileID: 8983591109370693235}
   RemoveButtonWrapper: {fileID: 3596547594938030683}
+--- !u!114 &1520215144205310403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5236673529507389065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d700e2ef7554a744a8ed14a2a3527356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5737003060729941988
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,7 +700,7 @@ PrefabInstance:
     - target: {fileID: 1387958446483935119, guid: 4fd5b2755dd52f7439e1d240a8b53025,
         type: 3}
       propertyPath: m_Name
-      value: Cancel button (1)
+      value: Cancel button
       objectReference: {fileID: 0}
     - target: {fileID: 3281452859136223550, guid: 4fd5b2755dd52f7439e1d240a8b53025,
         type: 3}

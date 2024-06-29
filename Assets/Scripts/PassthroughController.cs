@@ -18,14 +18,15 @@ public class PassthroughController : MonoBehaviour
     [Header("Others")]
     [SerializeField] private SettingsUI settingsUI;
 
-    private List<GameObject> _focusAreas = new();
+    private List<FocusAreaUI> _focusAreas = new();
 
     private void OnEnable()
     {
+        //TODO trigger changing opacity from Pomodoro timer
         settingsUI.OnMoreOpacity.AddListener(() => OnChangeOpacity_Toggle(true));
         settingsUI.OnLessOpacity.AddListener(() => OnChangeOpacity_Toggle(false));
         settingsUI.OnAddFocusArea.AddListener(SpawnNewFocusArea);
-        //TODO trigger changing opacity from Pomodoro timer
+        settingsUI.OnResetAllFocusAreas.AddListener(RemoveAllFocusAreas);
     }
     private void Start()
     {
@@ -69,24 +70,26 @@ public class PassthroughController : MonoBehaviour
         Vector3 pos = settingsUI.transform.position;
         pos.x += 1;
         GameObject newArea = Instantiate(focusAreaPrefab, pos, Quaternion.identity);
+
         if (newArea.TryGetComponent(out FocusAreaUI areaUI))
         {
-            areaUI.SaveButtonWrapper.WhenRelease.AddListener((PointerEvent e) => RemoveFocusArea(newArea));
+            areaUI.SaveButtonWrapper.WhenRelease.AddListener((PointerEvent e) => RemoveFocusArea(areaUI));
+            _focusAreas.Add(areaUI);
         }
 
-        _focusAreas.Add(newArea);
 
     }
-    private void RemoveFocusArea(GameObject focusArea)
+    private void RemoveFocusArea(FocusAreaUI focusArea)
     {
         _focusAreas.Remove(focusArea);
     }
     private void RemoveAllFocusAreas()
     {
-        foreach (GameObject area in _focusAreas)
+        foreach (FocusAreaUI areaUI in _focusAreas)
         {
-           //Call remove self
+            areaUI.RemoveSelf(new());
         }
+        _focusAreas.Clear();
     }
 
     #endregion

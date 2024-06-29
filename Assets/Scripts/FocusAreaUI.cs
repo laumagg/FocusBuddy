@@ -8,19 +8,16 @@ public class FocusAreaUI : MonoBehaviour
 
     private void OnEnable()
     {
-        if (SaveButtonWrapper != null)
-                SaveButtonWrapper.WhenRelease.AddListener(RemoveSelf);
+        //TODO Save Anchors
         RemoveButtonWrapper.WhenRelease.AddListener(RemoveSelf);
     }
     private void OnDisable()
     {
-        if (SaveButtonWrapper != null)
-            SaveButtonWrapper.WhenRelease.RemoveListener(RemoveSelf);
         RemoveButtonWrapper.WhenRelease.RemoveListener(RemoveSelf);
     }
-    private void RemoveSelf(PointerEvent e)
+    public void RemoveSelf(PointerEvent e)
     {
-        //Remove from anchors
+        //Remove anchors
 
         Destroy(this, .5f);
     }
