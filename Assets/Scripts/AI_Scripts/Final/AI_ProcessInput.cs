@@ -25,7 +25,7 @@ public class AI_ProcessInput : MonoBehaviour
         if (CurrentList == null) return;
 
         // Remove previous list
-        foreach (Transform child in transform)
+        foreach (Transform child in tasksObjectParent)
         {
             Destroy(child.gameObject);
         }

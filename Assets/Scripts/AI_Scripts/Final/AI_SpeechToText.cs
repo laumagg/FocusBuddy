@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -30,6 +31,10 @@ public class AI_SpeechToText : AI_Base
 
 
     private static AudioClip _clip;
+
+    public List<Material> MaterialsButtonOnOff = new();
+    public Renderer ButtonRenderer;
+    private int currentMat = 1;
 
 
     // Called when recording was finished
@@ -140,6 +145,13 @@ public class AI_SpeechToText : AI_Base
         Debug.LogError(message);
     }
 
+    public void ToggleMaterial()
+    {
+        ButtonRenderer.material = MaterialsButtonOnOff[currentMat];
+        currentMat = currentMat == 0 ? 1 : 0;
+        Debug.LogError($"currentMat is now {currentMat} wit the mat {ButtonRenderer.material.name}");
+    }
+
     public async void ToggleRecording()
     {
         
@@ -149,6 +161,8 @@ public class AI_SpeechToText : AI_Base
 
         // Aktualisiere die Zeit des letzten erfolgreichen Aufrufs
         lastToggleTime = DateTime.Now;
+
+        ToggleMaterial();
 
         Debug.LogError("entered ToggleRecording with isRecording " + isRecording);
 

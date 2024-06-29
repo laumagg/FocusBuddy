@@ -10,6 +10,8 @@ public class AI_WholeTesterNew : MonoBehaviour
     public AI_Conversator Conversator;
     public AI_CharacterDefiner CharacterDefinition;
 
+
+
     private void Start()
     {
         if (SpeechToText)
@@ -60,4 +62,6 @@ public class AI_WholeTesterNew : MonoBehaviour
             SpeechToText.ToggleRecording();
         }
     }
+
+
 }
