@@ -45,6 +45,11 @@ public class SettingsUI : MonoBehaviour
     }
 
     #region Testing
+    [ContextMenu("Reset")]
+    public void ResetFocusAreas_ButtonClick()
+    {
+        SendEvent(4);
+    }
     [ContextMenu("Add")]
     public void AddFocusArea_ButtonClick()
     {

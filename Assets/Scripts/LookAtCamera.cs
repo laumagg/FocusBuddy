@@ -3,6 +3,7 @@ using UnityEngine;
 public class LookAtCamera : MonoBehaviour
 {
     [SerializeField] private bool onlyOnStart = false;
+    [SerializeField] private bool reversed = false;
     private Transform target;
     private void Init()
     {
@@ -16,7 +17,7 @@ public class LookAtCamera : MonoBehaviour
 
         if (target != null)
         {
-            transform.LookAt(2 * transform.position - target.position);
+            transform.LookAt(reversed ? 2 * transform.position - target.position : target.position);
 
             if (onlyOnStart)
                 enabled = false;
