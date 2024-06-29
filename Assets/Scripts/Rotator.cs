@@ -9,9 +9,17 @@ public class Rotator : MonoBehaviour
     public GameObject rotatingObject;
     public Image rotatingArrow;
     public UnityEvent onRotatorEnd;
+    public bool allowedRotate = false;
+    public GameObject arrowUi;
+
+    public void StartRotation(){
+      allowedRotate = true;
+      arrowUi.SetActive(true);
+    }
 
 
     public void Update(){
+      if(!allowedRotate) return;
       // Assuming the rotation is around the Z axis
         float rotationAngle = rotatingObject.transform.eulerAngles.z;
 
@@ -21,7 +29,9 @@ public class Rotator : MonoBehaviour
 
         // Set the fill amount of the Image
         rotatingArrow.fillAmount = fillAmount;
-        if(fillAmount == 1){
+        if(fillAmount >=0.98f){
+          Debug.Log("end rotating");
+          allowedRotate = false;
 
           onRotatorEnd.Invoke();
         }
