@@ -77,7 +77,7 @@ public class PassthroughController : MonoBehaviour
         overlayPt.hidden = false;
 
         Vector3 pos = settingsUI.transform.position;
-        pos.y += 1;
+        pos.y += 0.5f;
         GameObject newArea = Instantiate(focusAreaPrefab, pos, Quaternion.identity);
 
 
