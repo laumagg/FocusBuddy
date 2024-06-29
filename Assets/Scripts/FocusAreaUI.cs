@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class FocusAreaUI : MonoBehaviour
 {
+    public GameObject PTSurface;
     public PointableUnityEventWrapper SaveButtonWrapper;
     public PointableUnityEventWrapper RemoveButtonWrapper;
 
@@ -31,6 +32,7 @@ public class FocusAreaUI : MonoBehaviour
     {
         //Create anchors?
         scalersParent.SetActive(false);
+        sideButtonsParent.SetActive(false);
         mover.enabled = false;
     }
 

@@ -27,7 +27,7 @@ public class SettingsUI : MonoBehaviour
             opacityMinusWrapper.WhenRelease.AddListener((PointerEvent v) => SendEvent(1));
 
 
-        addFocusAreaWrapper.WhenRelease.AddListener((PointerEvent v) => SendEvent(2));
+        addFocusAreaWrapper.WhenSelect.AddListener((PointerEvent v) => SendEvent(2));
         saveAllFocusAreasWrapper.WhenRelease.AddListener((PointerEvent v) => SendEvent(3));
         resetFocusAreasWrapper.WhenRelease.AddListener((PointerEvent v) => SendEvent(4));
     }

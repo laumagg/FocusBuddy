@@ -77,7 +77,7 @@ public class PassthroughController : MonoBehaviour
         overlayPt.hidden = false;
 
         Vector3 pos = settingsUI.transform.position;
-        pos.x += 1;
+        pos.y += 1;
         GameObject newArea = Instantiate(focusAreaPrefab, pos, Quaternion.identity);
 
 
@@ -103,14 +103,22 @@ public class PassthroughController : MonoBehaviour
         _focusAreas.Remove(focusArea);
         if (_focusAreas.Count == 0)
             overlayPt.hidden = true;
+
+        if (overlayPt.IsSurfaceGeometry(focusArea.PTSurface))
+            overlayPt.RemoveSurfaceGeometry(focusArea.PTSurface);
     }
     private void RemoveAllFocusAreas()
     {
         foreach (FocusAreaUI areaUI in _focusAreas)
         {
-            if (areaUI != null)
-                areaUI.RemoveSelf(new());
+            if (areaUI == null) continue;
+
+            if (overlayPt.IsSurfaceGeometry(areaUI.PTSurface))
+                overlayPt.RemoveSurfaceGeometry(areaUI.PTSurface);
+
+            areaUI.RemoveSelf(new());
         }
+
         _focusAreas.Clear();
         overlayPt.hidden = true;
     }
