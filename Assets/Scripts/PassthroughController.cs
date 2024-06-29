@@ -69,9 +69,9 @@ public class PassthroughController : MonoBehaviour
         Vector3 pos = settingsUI.transform.position;
         pos.x += 1;
         GameObject newArea = Instantiate(focusAreaPrefab, pos, Quaternion.identity);
-        if (newArea.TryGetComponent(out FocusAreaEraser eraser))
+        if (newArea.TryGetComponent(out FocusAreaUI areaUI))
         {
-            eraser.ButtonWrapper.WhenRelease.AddListener((PointerEvent e) => RemoveFocusArea(newArea));
+            areaUI.SaveButtonWrapper.WhenRelease.AddListener((PointerEvent e) => RemoveFocusArea(newArea));
         }
 
         _focusAreas.Add(newArea);
@@ -80,6 +80,13 @@ public class PassthroughController : MonoBehaviour
     private void RemoveFocusArea(GameObject focusArea)
     {
         _focusAreas.Remove(focusArea);
+    }
+    private void RemoveAllFocusAreas()
+    {
+        foreach (GameObject area in _focusAreas)
+        {
+           //Call remove self
+        }
     }
 
     #endregion
