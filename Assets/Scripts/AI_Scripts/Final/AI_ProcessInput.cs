@@ -23,7 +23,13 @@ public class AI_ProcessInput : MonoBehaviour
     {
         CurrentList = ExtractNumberedEntries(answer);
         if (CurrentList == null) return;
-        // Ausgabe der Liste
+
+        // Remove previous list
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+        // Add entries
         for (int i = 0; i < CurrentList.Count; i++)
         {
             Debug.Log(CurrentList[i]);

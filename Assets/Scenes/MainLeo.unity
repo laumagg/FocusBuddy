@@ -1130,6 +1130,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.15
       objectReference: {fileID: 0}
+    - target: {fileID: 1463650827998654718, guid: 636fbe72cf504a3468d77c43172f9fea,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3668361574666537152, guid: 636fbe72cf504a3468d77c43172f9fea,
         type: 3}
       propertyPath: m_Name
@@ -1205,6 +1210,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.43824002
       objectReference: {fileID: 0}
+    - target: {fileID: 8982254958486579298, guid: 636fbe72cf504a3468d77c43172f9fea,
+        type: 3}
+      propertyPath: m_text
+      value: Task List
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1243,7 +1253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onlyOnStart: 0
-  reversed: 0
+  reversed: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
