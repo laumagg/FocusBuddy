@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -6,6 +7,7 @@ using UnityEngine.Networking;
 public class AI_TextToSpeech : AI_Base
 {
     public AudioSource AudioSource;
+    public Animator Animator;
 
     [Tooltip("Supported voices are alloy, echo, fable, onyx, nova, and shimmer")]
     public SupportedVoice DesiredVoice = SupportedVoice.alloy;
@@ -44,7 +46,8 @@ public class AI_TextToSpeech : AI_Base
             if (audioClip != null)
             {
                 AudioSource.clip = audioClip;
-                AudioSource.Play();
+                //AudioSource.Play();
+                StartCoroutine(PlayAudioAndWait(AudioSource));
             }
             else
             {
@@ -56,6 +59,14 @@ public class AI_TextToSpeech : AI_Base
             Debug.LogError("Fehler bei der Konvertierung der Audiodaten: " + ex.Message);
         }
 
+    }
+
+    private IEnumerator PlayAudioAndWait(AudioSource audioSource)
+    {
+        audioSource.Play();
+        Animator.SetBool("isPlaying", true);
+        yield return new WaitForSeconds(audioSource.clip.length);
+        Animator.SetBool("isPlaying", false);
     }
 
 }

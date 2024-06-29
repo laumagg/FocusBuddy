@@ -24,8 +24,10 @@ public class AI_SpeechToText : AI_Base
     private int sampleRate = 16000;
     // Flag indicating whether recording is currently in progress.
     private bool isRecording = false;
+    private DateTime lastToggleTime = DateTime.MinValue;
+    // Definiere, wie viel Zeit mindestens zwischen den Aufrufen liegen muss
+    private readonly TimeSpan debounceTime = TimeSpan.FromSeconds(2);
 
-    public static double Temperature { get; set; } = 0.1;
 
     private static AudioClip _clip;
 
@@ -126,15 +128,35 @@ public class AI_SpeechToText : AI_Base
         return await tcs.Task;
     }
 
+    public void Debugger(string message)
+    {
+        // Überprüfe, ob die letzte Umschaltung weniger als 'debounceTime' zurückliegt
+        if ((DateTime.Now - lastToggleTime) < debounceTime)
+            return; // Wenn ja, ignoriere den aktuellen Aufruf
 
+        // Aktualisiere die Zeit des letzten erfolgreichen Aufrufs
+        lastToggleTime = DateTime.Now;
+
+        Debug.LogError(message);
+    }
 
     public async void ToggleRecording()
     {
+        
+        // Überprüfe, ob die letzte Umschaltung weniger als 'debounceTime' zurückliegt
+        if ((DateTime.Now - lastToggleTime) < debounceTime)
+            return; // Wenn ja, ignoriere den aktuellen Aufruf
+
+        // Aktualisiere die Zeit des letzten erfolgreichen Aufrufs
+        lastToggleTime = DateTime.Now;
+
+        Debug.LogError("entered ToggleRecording with isRecording " + isRecording);
 
         if (!isRecording)
             StartRecording();
         else
         {
+            // Internally calls StopRecording
             string text = await ReturnTextFromAudio();
             if (AudioWasRecorded != null)
                 AudioWasRecorded.Invoke(text);

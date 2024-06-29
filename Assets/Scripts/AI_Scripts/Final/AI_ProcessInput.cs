@@ -28,7 +28,7 @@ public class AI_ProcessInput : MonoBehaviour
     private void ProcessAnswer(string answer)
     {
         CurrentList = ExtractNumberedEntries(answer);
-
+        if (CurrentList == null) return;
         // Ausgabe der Liste
         foreach (string entry in CurrentList)
         {
@@ -38,6 +38,8 @@ public class AI_ProcessInput : MonoBehaviour
 
     private List<string> ExtractNumberedEntries(string text)
     {
+        Debug.LogError("regex " + text);
+        if (text == null) return null;
         List<string> entries = new List<string>();
         Regex regex = new Regex(@"\d+\.\s+[^.]+\.");
 

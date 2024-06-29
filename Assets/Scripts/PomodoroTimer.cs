@@ -71,7 +71,6 @@ public class Timer : MonoBehaviour
         //waiting 1 second in real time and increasing the timer value
         yield return new WaitForSecondsRealtime(1);
         elapsedSeconds++;
-        Debug.Log("elapsedTime" + elapsedSeconds);
       }
       StartBreak();
     }

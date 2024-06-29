@@ -955,6 +955,7 @@ GameObject:
   - component: {fileID: 8086800642357184769}
   - component: {fileID: 6393957131029386070}
   - component: {fileID: 8087681685875571043}
+  - component: {fileID: 8530585892240797599}
   m_Layer: 0
   m_Name: RightOVRHand
   m_TagString: Untagged
@@ -1010,6 +1011,31 @@ MonoBehaviour:
   _updateRootScale: 1
   _enablePhysicsCapsules: 0
   _applyBoneTranslations: 1
+--- !u!114 &8530585892240797599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3483571047509753915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c9d5b8070f306b4797061e4fd586200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 7
+  DesiredAxis: {x: 0, y: 0, z: 1}
+  StartRotation:
+    m_PersistentCalls:
+      m_Calls: []
+  StopRotation:
+    m_PersistentCalls:
+      m_Calls: []
+  objectToRotate: {fileID: 0}
+  objectCollider: {fileID: 0}
+  hand: {fileID: 0}
+  isIndexFingerPinching: 0
+  inCollider: 0
 --- !u!1 &3571029513648677860
 GameObject:
   m_ObjectHideFlags: 0
@@ -1553,6 +1579,7 @@ GameObject:
   - component: {fileID: 1706824940341319713}
   - component: {fileID: 1245017561959088778}
   - component: {fileID: 2780604939278350038}
+  - component: {fileID: 3508754529731745315}
   m_Layer: 0
   m_Name: LeftOVRHand
   m_TagString: Untagged
@@ -1608,6 +1635,31 @@ MonoBehaviour:
   _updateRootScale: 1
   _enablePhysicsCapsules: 0
   _applyBoneTranslations: 1
+--- !u!114 &3508754529731745315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5807088868916758554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c9d5b8070f306b4797061e4fd586200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 7
+  DesiredAxis: {x: 0, y: 0, z: 1}
+  StartRotation:
+    m_PersistentCalls:
+      m_Calls: []
+  StopRotation:
+    m_PersistentCalls:
+      m_Calls: []
+  objectToRotate: {fileID: 0}
+  objectCollider: {fileID: 0}
+  hand: {fileID: 0}
+  isIndexFingerPinching: 0
+  inCollider: 0
 --- !u!1 &5850967938207102215
 GameObject:
   m_ObjectHideFlags: 0

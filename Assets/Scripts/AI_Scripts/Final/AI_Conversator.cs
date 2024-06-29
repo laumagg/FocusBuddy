@@ -37,7 +37,7 @@ public class AI_Conversator : AI_Base
 
         string result = await CreateRequest(AllMessages.ToArray());
 
-        if (AnswerWasGiven != null)
+        if (AnswerWasGiven != null && result != "")
             AnswerWasGiven.Invoke(result);
 
         Debug.Log(result);
