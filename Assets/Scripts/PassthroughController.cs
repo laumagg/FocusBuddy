@@ -55,13 +55,14 @@ public class PassthroughController : MonoBehaviour
 
     private IEnumerator ChangeOpacity(float endOpacity)
     {
+        Debug.Log("opa");
         float startOpacity = underlayPt.textureOpacity;
         bool incrementing = startOpacity < endOpacity;
-
+        float speed = 0;
         while (incrementing ? underlayPt.textureOpacity < endOpacity : underlayPt.textureOpacity > endOpacity)
         {
-            underlayPt.textureOpacity = Mathf.Lerp(startOpacity, endOpacity, transitionSpeed * Time.deltaTime);
-
+            speed += transitionSpeed * Time.deltaTime;
+            underlayPt.textureOpacity = Mathf.Lerp(startOpacity, endOpacity, speed);
             yield return null;
         }
         underlayPt.textureOpacity = endOpacity;
