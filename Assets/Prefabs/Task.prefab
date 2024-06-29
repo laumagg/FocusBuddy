@@ -222,6 +222,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2981918105109930913, guid: 4fd5b2755dd52f7439e1d240a8b53025,
+        type: 3}
+      propertyPath: _whenRelease.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2981918105109930913, guid: 4fd5b2755dd52f7439e1d240a8b53025,
+        type: 3}
+      propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 3780671244086486322, guid: 1b08e0deb4b3e2344815291cde3b3459,
+        type: 3}
     - target: {fileID: 3281452859136223550, guid: 4fd5b2755dd52f7439e1d240a8b53025,
         type: 3}
       propertyPath: m_LocalPosition.x
