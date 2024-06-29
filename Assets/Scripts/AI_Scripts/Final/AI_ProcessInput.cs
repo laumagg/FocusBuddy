@@ -3,22 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using TMPro;
 
 public class AI_ProcessInput : MonoBehaviour
 {
     [SerializeField] private AI_Conversator conversator;
 
-    public List<string> CurrentList = new();
+    [SerializeField] private Transform tasksObjectParent;
+    [SerializeField] private GameObject taskPrefab;
 
-    string text = "No worries, let's break it down:\n\n" +
-                      "1. Choose your topic.\n" +
-                      "2. Research your topic.\n" +
-                      "3. Create an outline.\n" +
-                      "4. Write your thesis statement.\n" +
-                      "5. Write the body.\n" +
-                      "6. Write the conclusion.\n" +
-                      "7. Revise and edit.\n\n" +
-                      "Just take it one bite at a time!";
+    public List<string> CurrentList = new();
 
     private void Start()
     {
@@ -30,10 +24,19 @@ public class AI_ProcessInput : MonoBehaviour
         CurrentList = ExtractNumberedEntries(answer);
         if (CurrentList == null) return;
         // Ausgabe der Liste
-        foreach (string entry in CurrentList)
+        for (int i = 0; i < CurrentList.Count; i++)
         {
-            Debug.Log(entry);
+            Debug.Log(CurrentList[i]);
+            GameObject task = Instantiate(taskPrefab);
+            task.GetComponentInChildren<TMP_Text>().text = CurrentList[i];
+
+            task.transform.parent = tasksObjectParent;
+            task.transform.localPosition = Vector3.zero;
+            task.transform.localRotation = Quaternion.identity;
+
+            task.transform.localPosition += new Vector3(-0.15f, 0.1f - 0.05f * i, 0);
         }
+
     }
 
     private List<string> ExtractNumberedEntries(string text)
