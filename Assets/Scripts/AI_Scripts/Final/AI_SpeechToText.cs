@@ -11,8 +11,6 @@ using static AI_Model;
 
 public class AI_SpeechToText : AI_Base
 {
-    [System.Serializable]
-    public class StringEvent : UnityEvent<string> { }
     public StringEvent AudioWasRecorded;
 
     // The maximum length of the recording in seconds.

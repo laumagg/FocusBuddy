@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Networking;
 
 public class AI_Base : MonoBehaviour
@@ -14,7 +15,6 @@ public class AI_Base : MonoBehaviour
     protected async void Start()
     {
         apiKey = await APIKeyManager.GetAPIKeyAsync();
-        Debug.LogError(apiKey);
     }
 
     public static double Temperature { get; set; } = 0.1;
@@ -151,4 +151,6 @@ class AudioTranscriptionResponse
     public string text;
 }
 
+[Serializable]
+public class StringEvent : UnityEvent<string> { }
 

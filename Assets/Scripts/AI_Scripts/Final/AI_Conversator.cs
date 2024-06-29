@@ -11,12 +11,9 @@ using static AI_Model;
 
 public class AI_Conversator : AI_Base
 {
-    /// <summary>
-    /// The temperature to use for text completion.
-    /// </summary>
-    public static double Temperature { get; set; } = 0.1;
-
     public List<ChatCompletionMessage> AllMessages = new();
+
+    public StringEvent AnswerWasGiven;
 
     [ContextMenu("TestRequest")]
     public void TestRequest()
@@ -39,6 +36,9 @@ public class AI_Conversator : AI_Base
         });
 
         string result = await CreateRequest(AllMessages.ToArray());
+
+        if (AnswerWasGiven != null)
+            AnswerWasGiven.Invoke(result);
 
         Debug.Log(result);
         AllMessages.Add(new ChatCompletionMessage

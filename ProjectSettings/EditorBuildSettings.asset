@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SetupAI.unity
     guid: c89fe29519ccaf341bb61daf7615cba9
+  - enabled: 1
+    path: Assets/Samples/Meta XR Interaction SDK/66.0.0/Example Scenes/PanelWithManipulators.unity
+    guid: bafd0df297556dd44832193b22fca1ae
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 85f6a69298e9acf48878caae9a24bb60,
       type: 2}
