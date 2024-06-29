@@ -1,4 +1,5 @@
 using Oculus.Interaction;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,8 +8,9 @@ using UnityEngine;
 public class PassthroughController : MonoBehaviour
 {
     [Header("Underlay Passthrough")]
+    [SerializeField] private bool startInVR = true;
     [SerializeField] private OVRPassthroughLayer underlayPt;
-    [SerializeField] private float startOpacity = 0.5f;
+    [SerializeField] private float defaultOpacity = 0.7f;
     [SerializeField] private float transitionSpeed = 0.1f;
 
     [Header("Overlay Passthrough")]
@@ -19,22 +21,26 @@ public class PassthroughController : MonoBehaviour
     [SerializeField] private SettingsUI settingsUI;
 
     private List<FocusAreaUI> _focusAreas = new();
-    public int ActiveFocusAreas => _focusAreas.Count;
+
+    private void Start()
+    {
+        overlayPt.hidden = true;
+        underlayPt.hidden = startInVR;
+        if (startInVR)
+        {
+            underlayPt.textureOpacity = 1;
+            StartCoroutine(ChangeOpacity(defaultOpacity));
+        }
+
+    }
     private void OnEnable()
     {
         //TODO trigger changing opacity from Pomodoro timer
-        settingsUI.OnMoreOpacity.AddListener(() => OnChangeOpacity_Toggle(true));
-        settingsUI.OnLessOpacity.AddListener(() => OnChangeOpacity_Toggle(false));
         settingsUI.OnAddFocusArea.AddListener(SpawnNewFocusArea);
         settingsUI.OnResetAllFocusAreas.AddListener(RemoveAllFocusAreas);
+        settingsUI.OnSaveAllFocusAreas.AddListener(SaveFocusAreas);
     }
-    private void Start()
-    {
-        if (underlayPt == null) return;
 
-        underlayPt.enabled = true;
-        underlayPt.textureOpacity = startOpacity;
-    }
     #region Underlay PT
     private void OnChangeOpacity_Toggle(bool increase)
     {
@@ -47,13 +53,15 @@ public class PassthroughController : MonoBehaviour
 
     private IEnumerator ChangeOpacity(float endOpacity)
     {
+        underlayPt.hidden = false;
+
         float startOpacity = underlayPt.textureOpacity;
         bool incrementing = startOpacity < endOpacity;
-
+        float speed = 0;
         while (incrementing ? underlayPt.textureOpacity < endOpacity : underlayPt.textureOpacity > endOpacity)
         {
-            underlayPt.textureOpacity = Mathf.Lerp(startOpacity, endOpacity, transitionSpeed * Time.deltaTime);
-
+            speed += transitionSpeed * Time.deltaTime;
+            underlayPt.textureOpacity = Mathf.Lerp(startOpacity, endOpacity, speed);
             yield return null;
         }
         underlayPt.textureOpacity = endOpacity;
@@ -64,39 +72,55 @@ public class PassthroughController : MonoBehaviour
     private void SpawnNewFocusArea()
     {
         if (!focusAreaPrefab) return;
-        if (overlayPt.enabled == false)
-            overlayPt.enabled = true;
+        overlayPt.hidden = false;
 
         Vector3 pos = settingsUI.transform.position;
-        pos.x += 1;
+        pos.y += 0.5f;
         GameObject newArea = Instantiate(focusAreaPrefab, pos, Quaternion.identity);
+
 
         if (newArea.TryGetComponent(out FocusAreaUI areaUI))
         {
-            areaUI.SaveButtonWrapper.WhenRelease.AddListener((PointerEvent e) => SaveFocusArea(areaUI));
-            areaUI.RemoveButtonWrapper.WhenRelease.AddListener((PointerEvent e) => RemoveFocusArea(areaUI));
+            areaUI.RemoveButtonInteractable.WhenStateChanged += (InteractableStateChangeArgs args) => RemoveFocusArea(areaUI, args);
+            _focusAreas.Add(areaUI);
         }
-
-
     }
-    private void SaveFocusArea(FocusAreaUI focusArea)
+
+    private void SaveFocusAreas()
     {
-        _focusAreas.Add(focusArea);
-        // Create Anchors?
+        overlayPt.hidden = false;
+        foreach (FocusAreaUI areaUI in _focusAreas)
+        {
+            if (areaUI != null)
+                areaUI.SaveSelf(new());
+        }
     }
-    private void RemoveFocusArea(FocusAreaUI focusArea)
+
+    private void RemoveFocusArea(FocusAreaUI focusArea, InteractableStateChangeArgs args)
     {
+        if (args.NewState != InteractableState.Select) return;
+
         _focusAreas.Remove(focusArea);
-        //Remove Anchors?
+        if (_focusAreas.Count == 0)
+            overlayPt.hidden = true;
+
+        if (overlayPt.IsSurfaceGeometry(focusArea.PTSurface))
+            overlayPt.RemoveSurfaceGeometry(focusArea.PTSurface);
     }
     private void RemoveAllFocusAreas()
     {
         foreach (FocusAreaUI areaUI in _focusAreas)
         {
+            if (areaUI == null) continue;
+
+            if (overlayPt.IsSurfaceGeometry(areaUI.PTSurface))
+                overlayPt.RemoveSurfaceGeometry(areaUI.PTSurface);
+
             areaUI.RemoveSelf(new());
-            //Remove Anchors?
         }
+
         _focusAreas.Clear();
+        overlayPt.hidden = true;
     }
 
     #endregion
