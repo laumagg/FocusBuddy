@@ -620,7 +620,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5807088868916758554, guid: 929593ac43278644eb5481acc103f3b4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 541170564}
+    - targetCorrespondingSourceObject: {fileID: 3483571047509753915, guid: 929593ac43278644eb5481acc103f3b4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 541170563}
   m_SourcePrefab: {fileID: 100100000, guid: 929593ac43278644eb5481acc103f3b4, type: 3}
 --- !u!4 &541170560 stripped
 Transform:
@@ -628,6 +636,68 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 541170559}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &541170561 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3483571047509753915, guid: 929593ac43278644eb5481acc103f3b4,
+    type: 3}
+  m_PrefabInstance: {fileID: 541170559}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &541170562 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5807088868916758554, guid: 929593ac43278644eb5481acc103f3b4,
+    type: 3}
+  m_PrefabInstance: {fileID: 541170559}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &541170563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541170561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c9d5b8070f306b4797061e4fd586200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 7
+  DesiredAxis: {x: 0, y: 0, z: 1}
+  StartRotation:
+    m_PersistentCalls:
+      m_Calls: []
+  StopRotation:
+    m_PersistentCalls:
+      m_Calls: []
+  objectToRotate: {fileID: 0}
+  objectCollider: {fileID: 0}
+  hand: {fileID: 0}
+  isIndexFingerPinching: 0
+  inCollider: 0
+--- !u!114 &541170564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541170562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c9d5b8070f306b4797061e4fd586200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 7
+  DesiredAxis: {x: 0, y: 0, z: 1}
+  StartRotation:
+    m_PersistentCalls:
+      m_Calls: []
+  StopRotation:
+    m_PersistentCalls:
+      m_Calls: []
+  objectToRotate: {fileID: 0}
+  objectCollider: {fileID: 0}
+  hand: {fileID: 0}
+  isIndexFingerPinching: 0
+  inCollider: 0
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

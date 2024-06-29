@@ -8,6 +8,7 @@ using static OVRHand;
 public class HandTrackingRotateYWithPinch : MonoBehaviour
 {
     public float Speed = 10;
+    public Vector3 DesiredAxis = Vector3.up;
 
     public UnityEvent StartRotation;
     public UnityEvent StopRotation;
@@ -46,11 +47,19 @@ public class HandTrackingRotateYWithPinch : MonoBehaviour
 
         Vector3 currentHandPosition = hand.transform.position;
         Vector3 handMovement = currentHandPosition - previousHandPosition;
+        //float movement = 0;
+        //if (DesiredAxis.Equals(Vector3.up))
+        //    movement = handMovement.y;
+        //if (DesiredAxis.Equals(Vector3.right))
+        //    movement = handMovement.x;
+        //if (DesiredAxis.Equals(Vector3.forward))
+        //    movement = handMovement.z;
+
         float rotationY = Math.Abs(handMovement.x) * 100f * Speed;
 
         StartRotation.Invoke();
 
-        objectToRotate.Rotate(Vector3.up, rotationY * Time.deltaTime);
+        objectToRotate.Rotate(DesiredAxis, rotationY * Time.deltaTime);
     }
 
     private bool IsHandInCollider(OVRHand hand)
