@@ -24,8 +24,8 @@ public class PassthroughController : MonoBehaviour
 
     private void Start()
     {
-        overlayPt.enabled = false;
-        underlayPt.enabled = startInVR;
+        overlayPt.hidden = true;
+        underlayPt.hidden = startInVR;
         if (startInVR)
         {
             underlayPt.textureOpacity = 1;
@@ -55,7 +55,8 @@ public class PassthroughController : MonoBehaviour
 
     private IEnumerator ChangeOpacity(float endOpacity)
     {
-        Debug.Log("opa");
+        underlayPt.hidden = false;
+
         float startOpacity = underlayPt.textureOpacity;
         bool incrementing = startOpacity < endOpacity;
         float speed = 0;
@@ -73,23 +74,23 @@ public class PassthroughController : MonoBehaviour
     private void SpawnNewFocusArea()
     {
         if (!focusAreaPrefab) return;
-        overlayPt.enabled = true;
+        overlayPt.hidden = false;
 
         Vector3 pos = settingsUI.transform.position;
         pos.x += 1;
         GameObject newArea = Instantiate(focusAreaPrefab, pos, Quaternion.identity);
+
 
         if (newArea.TryGetComponent(out FocusAreaUI areaUI))
         {
             areaUI.RemoveButtonWrapper.WhenRelease.AddListener((PointerEvent e) => RemoveFocusArea(areaUI));
             _focusAreas.Add(areaUI);
         }
-
     }
 
     private void SaveFocusAreas()
     {
-        //Anchoring
+        overlayPt.hidden = false;
         foreach (FocusAreaUI areaUI in _focusAreas)
         {
             if (areaUI != null)
@@ -100,7 +101,8 @@ public class PassthroughController : MonoBehaviour
     private void RemoveFocusArea(FocusAreaUI focusArea)
     {
         _focusAreas.Remove(focusArea);
-        if (_focusAreas.Count == 0) overlayPt.enabled = false;
+        if (_focusAreas.Count == 0)
+            overlayPt.hidden = true;
     }
     private void RemoveAllFocusAreas()
     {
@@ -110,7 +112,7 @@ public class PassthroughController : MonoBehaviour
                 areaUI.RemoveSelf(new());
         }
         _focusAreas.Clear();
-        overlayPt.enabled = false;
+        overlayPt.hidden = true;
     }
 
     #endregion

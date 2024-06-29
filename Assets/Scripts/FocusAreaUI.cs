@@ -3,9 +3,12 @@ using UnityEngine;
 
 public class FocusAreaUI : MonoBehaviour
 {
-    [SerializeField] private GameObject uiParent;
     public PointableUnityEventWrapper SaveButtonWrapper;
     public PointableUnityEventWrapper RemoveButtonWrapper;
+
+    [SerializeField] private GameObject scalersParent;
+    [SerializeField] private GameObject sideButtonsParent;
+    [SerializeField] private MeshRenderer mover;
 
     private void OnEnable()
     {
@@ -14,6 +17,7 @@ public class FocusAreaUI : MonoBehaviour
     }
     private void OnDisable()
     {
+        SaveButtonWrapper.WhenRelease.RemoveListener(SaveSelf);
         RemoveButtonWrapper.WhenRelease.RemoveListener(RemoveSelf);
     }
 
@@ -21,12 +25,13 @@ public class FocusAreaUI : MonoBehaviour
     public void RemoveSelf(PointerEvent e)
     {
         //Remove anchors?
-        Destroy(gameObject, .5f);
+        Destroy(gameObject, .3f);
     }
     public void SaveSelf(PointerEvent e)
     {
         //Create anchors?
-        uiParent.gameObject.SetActive(false);
+        scalersParent.SetActive(false);
+        mover.enabled = false;
     }
 
     #region Testing
