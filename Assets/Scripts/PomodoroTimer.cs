@@ -10,7 +10,8 @@ public class Timer : MonoBehaviour
     public UnityEvent onEndTimer;
     public UnityEvent onEndBreak;
     private float pomodoroTimer = 60;//1500 -- 25min
-    private float breakTimer = 10;//240  -- 4min
+    private float breakTimer = 240;//240  -- 4min
+    private float remainingTimer;
     public GameObject pomodoroObject;
    
     private IEnumerator coroutine;
@@ -20,10 +21,24 @@ public class Timer : MonoBehaviour
     private float seconds;
     public TMP_Text mText;
     private bool isBreak = false;
-
+     public bool isPaused = false;
+     private bool isRunning = false;
+     private AudioSource audio;
+     private float displayTime;
+    
     private void Start()
     {
-        StartTimer();
+      audio = GetComponent<AudioSource>();
+      initTimer();
+      StartTimer();//TODO: remove, starts with interaction
+    }
+
+    private void Update(){
+      
+    }
+
+    private void initTimer(){
+      elapsedSeconds = 0;
     }
 
     public void StartTimer(){
@@ -45,35 +60,29 @@ public class Timer : MonoBehaviour
           onEndBreak.Invoke();
           return;
         }
-        
     }
+
     private IEnumerator timer(float time){
-      Quaternion startingRotation = pomodoroObject.transform.rotation;
-      Quaternion targetRotation = startingRotation;
-      angle = 0.0f; //restart to 0
-      float angleIncrement = 360.0f / time;// full rotation in n minute
-      elapsedSeconds = 0;
+      Debug.Log("Start");
+      audio.Play();
       while (elapsedSeconds < time)
       {
         DisplayTime(elapsedSeconds);
         //waiting 1 second in real time and increasing the timer value
         yield return new WaitForSecondsRealtime(1);
-        
-        angle += angleIncrement;
-        pomodoroObject.transform.rotation = targetRotation * Quaternion.Euler(0,0,angle);
-        Debug.Log($"Time elapsed: {elapsedSeconds}s, Rotation: {pomodoroObject.transform.rotation.eulerAngles}");
         elapsedSeconds++;
+        Debug.Log("elapsedTime" + elapsedSeconds);
       }
-      pomodoroObject.transform.rotation = targetRotation; //fix position if not exact
       StartBreak();
     }
 
     void DisplayTime(float timeToDisplay)
     {
         timeToDisplay += 1;
-
-        float minutes = Mathf.FloorToInt(timeToDisplay / 60); 
-        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+        
+        float minutes = Mathf.FloorToInt(1 - (timeToDisplay / 60)); 
+        
+        float seconds = Mathf.FloorToInt((60 - (timeToDisplay % 60)) % 60);
 
         mText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
