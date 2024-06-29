@@ -4,21 +4,21 @@ using UnityEngine;
 public class FocusAreaUI : MonoBehaviour
 {
     public GameObject PTSurface;
-    public PokeInteractable SaveButtonWrapper;
-    public PokeInteractable RemoveButtonWrapper;
+    public PokeInteractable SaveButtonInteractable;
+    public PokeInteractable RemoveButtonInteractable;
 
     [SerializeField] private GameObject sideButtonsParent;
     [SerializeField] private MeshRenderer mover;
 
     private void OnEnable()
     {
-        SaveButtonWrapper.WhenStateChanged += SaveSelf;
-        RemoveButtonWrapper.WhenStateChanged += RemoveSelf;
+        SaveButtonInteractable.WhenStateChanged += SaveSelf;
+        RemoveButtonInteractable.WhenStateChanged += RemoveSelf;
     }
     private void OnDisable()
     {
-        SaveButtonWrapper.WhenStateChanged -= SaveSelf;
-        RemoveButtonWrapper.WhenStateChanged -= RemoveSelf;
+        SaveButtonInteractable.WhenStateChanged -= SaveSelf;
+        RemoveButtonInteractable.WhenStateChanged -= RemoveSelf;
     }
 
 

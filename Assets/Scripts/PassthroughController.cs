@@ -81,7 +81,7 @@ public class PassthroughController : MonoBehaviour
 
         if (newArea.TryGetComponent(out FocusAreaUI areaUI))
         {
-            areaUI.RemoveButtonWrapper.WhenRelease.AddListener((PointerEvent e) => RemoveFocusArea(areaUI));
+            areaUI.RemoveButtonInteractable.WhenStateChanged += (InteractableStateChangeArgs args) => RemoveFocusArea(areaUI, args);
             _focusAreas.Add(areaUI);
         }
     }
@@ -96,8 +96,10 @@ public class PassthroughController : MonoBehaviour
         }
     }
 
-    private void RemoveFocusArea(FocusAreaUI focusArea)
+    private void RemoveFocusArea(FocusAreaUI focusArea, InteractableStateChangeArgs args)
     {
+        if (args.NewState != InteractableState.Select) return;
+
         _focusAreas.Remove(focusArea);
         if (_focusAreas.Count == 0)
             overlayPt.hidden = true;
