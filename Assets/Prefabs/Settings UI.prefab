@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1593014317360035946}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0095}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -62,8 +62,8 @@ Transform:
   m_GameObject: {fileID: 2849536449076697593}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.01, z: 0}
-  m_LocalScale: {x: 0.37750798, y: 0.10255952, z: 0.015}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.18520541, y: 0.068202086, z: 0.015}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9124774482998100555}
@@ -225,10 +225,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Reset button
       objectReference: {fileID: 0}
+    - target: {fileID: 1447037982132875759, guid: 4fd5b2755dd52f7439e1d240a8b53025,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3281452859136223550, guid: 4fd5b2755dd52f7439e1d240a8b53025,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.1216
+      value: -0.0534
       objectReference: {fileID: 0}
     - target: {fileID: 3281452859136223550, guid: 4fd5b2755dd52f7439e1d240a8b53025,
         type: 3}
@@ -238,7 +243,7 @@ PrefabInstance:
     - target: {fileID: 3281452859136223550, guid: 4fd5b2755dd52f7439e1d240a8b53025,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0070000007
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3281452859136223550, guid: 4fd5b2755dd52f7439e1d240a8b53025,
         type: 3}
@@ -283,7 +288,7 @@ PrefabInstance:
     - target: {fileID: 6588645515840700197, guid: 4fd5b2755dd52f7439e1d240a8b53025,
         type: 3}
       propertyPath: instanceId
-      value: daa8f76c-fa71-46a4-b0ca-678133c51823
+      value: e69f6286-92d0-41cb-a69e-d4338a4c0e53
       objectReference: {fileID: 0}
     - target: {fileID: 7600220951747603586, guid: 4fd5b2755dd52f7439e1d240a8b53025,
         type: 3}
@@ -352,6 +357,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Add focus area button
       objectReference: {fileID: 0}
+    - target: {fileID: 1447037982132875759, guid: 4fd5b2755dd52f7439e1d240a8b53025,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3281452859136223550, guid: 4fd5b2755dd52f7439e1d240a8b53025,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -402,10 +412,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5014522716834758957, guid: 4fd5b2755dd52f7439e1d240a8b53025,
+        type: 3}
+      propertyPath: distance
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6588645515840700197, guid: 4fd5b2755dd52f7439e1d240a8b53025,
         type: 3}
       propertyPath: instanceId
-      value: 76d90f93-5699-46bc-a5d1-a64007516230
+      value: 4f6d105e-5927-49fe-a3e6-d474b5e0c246
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -443,10 +458,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Save button
       objectReference: {fileID: 0}
+    - target: {fileID: 1447037982132875759, guid: 4fd5b2755dd52f7439e1d240a8b53025,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3281452859136223550, guid: 4fd5b2755dd52f7439e1d240a8b53025,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.119
+      value: 0.0552
       objectReference: {fileID: 0}
     - target: {fileID: 3281452859136223550, guid: 4fd5b2755dd52f7439e1d240a8b53025,
         type: 3}
@@ -456,7 +476,7 @@ PrefabInstance:
     - target: {fileID: 3281452859136223550, guid: 4fd5b2755dd52f7439e1d240a8b53025,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0070000007
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3281452859136223550, guid: 4fd5b2755dd52f7439e1d240a8b53025,
         type: 3}
@@ -501,7 +521,7 @@ PrefabInstance:
     - target: {fileID: 6588645515840700197, guid: 4fd5b2755dd52f7439e1d240a8b53025,
         type: 3}
       propertyPath: instanceId
-      value: 82991b4f-ff2a-4471-b2af-9e35adeba0a5
+      value: 72f30baa-54a2-4305-9d55-71c03fdfc683
       objectReference: {fileID: 0}
     - target: {fileID: 7600220951747603586, guid: 4fd5b2755dd52f7439e1d240a8b53025,
         type: 3}
