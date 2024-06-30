@@ -8,7 +8,7 @@ using UnityEngine;
 public class PassthroughController : MonoBehaviour
 {
     [Header("Underlay Passthrough")]
-    [SerializeField] private bool startInVR = true;
+    [SerializeField] private bool darkerStart = true;
     [SerializeField] private OVRPassthroughLayer underlayPt;
     [SerializeField] private float defaultOpacity = 0.7f;
     [SerializeField] private float transitionSpeed = 0.1f;
@@ -26,12 +26,11 @@ public class PassthroughController : MonoBehaviour
     private void Start()
     {
         overlayPt.hidden = true;
-        underlayPt.hidden = startInVR;
-        if (startInVR)
-        {
-            underlayPt.textureOpacity = 1;
+        underlayPt.hidden = false;
+        underlayPt.textureOpacity = 1;
+        if (darkerStart)
             StartCoroutine(ChangeOpacity(defaultOpacity));
-        }
+
 
     }
     private void OnEnable()
@@ -99,6 +98,10 @@ public class PassthroughController : MonoBehaviour
             if (areaUI != null)
                 areaUI.SaveSelf(new());
         }
+
+        //TODO Delete after
+        StartCoroutine(ChangeOpacity(defaultOpacity));
+        pomodoroTimer.transform.parent.gameObject.SetActive(true);
     }
 
     private void RemoveFocusArea(FocusAreaUI focusArea, InteractableStateChangeArgs args)
