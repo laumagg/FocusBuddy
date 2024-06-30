@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 public class AI_ProcessInput : MonoBehaviour
 {
+    public UnityEvent FirstListCreated;
+
     [SerializeField] private AI_Conversator conversator;
 
     [SerializeField] private Transform tasksObjectParent;
@@ -21,6 +24,9 @@ public class AI_ProcessInput : MonoBehaviour
 
     private void ProcessAnswer(string answer)
     {
+        if (CurrentList.Count == 0)
+            FirstListCreated.Invoke();
+
         CurrentList = ExtractNumberedEntries(answer);
         if (CurrentList == null) return;
 
