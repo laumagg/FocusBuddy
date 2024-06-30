@@ -85,10 +85,10 @@ public class Timer : MonoBehaviour
     }
 
     public void StartBreak()
-    {
-        onBreakStart.Invoke();
+    {       
         if (!isBreak)
         {
+            onBreakStart.Invoke();
             currentTimerInSeconds = breakTimer;
             isBreak = true;
             coroutine = timer(breakTimer);
@@ -96,6 +96,7 @@ public class Timer : MonoBehaviour
         }
         else
         {
+            isBreak = false;
             onEndBreak.Invoke();
             return;
         }

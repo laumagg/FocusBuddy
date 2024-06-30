@@ -6,12 +6,11 @@ public class RandomComplimentMaker : MonoBehaviour
 {
     [SerializeField] private AI_TextToSpeech tts;
 
-    [SerializeField] private string welcomeMessage = "Hi, I am Tommy. You will keep me.";
-    [SerializeField] private string ptTutorialMessage = "Let us create focus areas";
-    [SerializeField] private string goodJobMessage = "Good Job. You are the best, like no one ever was";
-    [SerializeField] private string rotateTutorialMessage = "Spin my head right round";
-    [SerializeField] private string rewardMessage = "Your earned a tomato. Let us make a pause.";
-    [SerializeField] private string restartMessage = "Time to go work back, my slave";
+    private string welcomeMessage = "Hi, I’m Tommy, your Focus Buddy. What do you want to accomplish? Click the microphone button to speak and click it again when you’re finished talking.";
+    private string ptTutorialMessage = "Let’s create your focus areas. Click the plus button to add one.";
+    private string goodJobMessage = "Well focused! +1 tomato to your basket. Time for a break!";
+    private string rotateTutorialMessage = "Time to focus! Rotate me to set the timer for 25 minutes.";
+    private string restartMessage = "Time to go work back, my slave";
 
     [TextArea]
     public List<string> Compliments = new();
@@ -47,9 +46,6 @@ public class RandomComplimentMaker : MonoBehaviour
                 message = goodJobMessage;
                 break;
             case 4:
-                message = rewardMessage;
-                break;
-            case 5:
                 message = restartMessage;
                 break;
             default:
