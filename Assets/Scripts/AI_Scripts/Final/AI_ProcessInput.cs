@@ -17,6 +17,8 @@ public class AI_ProcessInput : MonoBehaviour
 
     public List<string> CurrentList = new();
 
+    private bool firstList = true;
+
     private void Start()
     {
         conversator.AnswerWasGiven.AddListener(ProcessAnswer);
@@ -24,11 +26,19 @@ public class AI_ProcessInput : MonoBehaviour
 
     private void ProcessAnswer(string answer)
     {
-        if (CurrentList.Count == 0)
-            FirstListCreated.Invoke();
+
 
         CurrentList = ExtractNumberedEntries(answer);
         if (CurrentList == null) return;
+
+        FindObjectOfType<AI_TextToSpeech>().AudioFinished.AddListener(() =>
+        {
+            if (firstList)
+            {
+                FirstListCreated.Invoke();
+                firstList = false;
+            }
+        });
 
         // Remove previous list
         foreach (Transform child in tasksObjectParent)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Networking;
 
 
@@ -8,6 +9,8 @@ public class AI_TextToSpeech : AI_Base
 {
     public AudioSource AudioSource;
     public Animator Animator;
+
+    public UnityEvent AudioFinished;
 
     [Tooltip("Supported voices are alloy, echo, fable, onyx, nova, and shimmer")]
     public SupportedVoice DesiredVoice = SupportedVoice.alloy;
@@ -67,6 +70,7 @@ public class AI_TextToSpeech : AI_Base
         Animator.SetBool("isPlaying", true);
         yield return new WaitForSeconds(audioSource.clip.length);
         Animator.SetBool("isPlaying", false);
+        AudioFinished.Invoke();
     }
 
 }
