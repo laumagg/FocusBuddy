@@ -47,19 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tts: {fileID: 0}
-  welcomeMessage: Hi, I am Tommy. You will keep me.
-  ptTutorialMessage: Let us create focus areas
-  goodJobMessage: Good Job
-  rotateTutorialMessage: Spin my head right round
-  rewardMessage: Your earned a tomato. Let us make a pause.
-  restartMessage: Time to go work back, my slave
-  Compliments:
-  - You're not someone I pretend not to see in public.
-  - If you were a vegetable, you'd be a cute-cumber.
-  - "You're like the bottom of my laptop\u2014unintentionally hot."
-  - I love how you can wear anything and still look like you're dressed for a costume
-    party.
-  - I bet you make babies smile just by stepping out of their sight.
+  Compliments: []
 --- !u!114 &5536388323848724380
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -98,10 +98,6 @@ public class PassthroughController : MonoBehaviour
             if (areaUI != null)
                 areaUI.SaveSelf(new());
         }
-
-        //TODO Delete after
-        StartCoroutine(ChangeOpacity(defaultOpacity));
-        pomodoroTimer.transform.parent.gameObject.SetActive(true);
     }
 
     private void RemoveFocusArea(FocusAreaUI focusArea, InteractableStateChangeArgs args)

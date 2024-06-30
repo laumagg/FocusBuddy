@@ -6,11 +6,11 @@ public class RandomComplimentMaker : MonoBehaviour
 {
     [SerializeField] private AI_TextToSpeech tts;
 
-    private string welcomeMessage = "Hi, I’m Tommy, your Focus Buddy. What do you want to accomplish? Click the microphone button to speak and click it again when you’re finished talking.";
+    private string welcomeMessage = "Hi, I’m your Focus Buddy. What do you want to accomplish? Click the microphone button to speak and click it again when you’re finished talking.";
     private string ptTutorialMessage = "Let’s create your focus areas. Click the plus button to add one.";
     private string goodJobMessage = "Well focused! +1 tomato to your basket. Time for a break!";
     private string rotateTutorialMessage = "Time to focus! Rotate me to set the timer for 25 minutes.";
-    private string restartMessage = "Time to go work back, my slave";
+    private string restartMessage = "Time to go back to work!";
 
     [TextArea]
     public List<string> Compliments = new();
