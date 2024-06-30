@@ -136,8 +136,7 @@ public class Timer : MonoBehaviour
     {
         timeToDisplay += 1;
 
-        float minutes = Mathf.FloorToInt(currentTimerInSeconds - (timeToDisplay / 60));
-
+        float minutes = Mathf.FloorToInt((currentTimerInSeconds - (timeToDisplay / 60)) / 60);
         float seconds = Mathf.FloorToInt((60 - (timeToDisplay % 60)) % 60);
 
         mText.text = string.Format("{0:00}:{1:00}", minutes, seconds);

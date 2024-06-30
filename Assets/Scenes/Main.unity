@@ -304,14 +304,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 929282741631677902, guid: 30159430e1ba0214cb6681d952579427,
         type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 2bba1f7023b772547a5ce8c1ba0e07a4,
-        type: 2}
-    - target: {fileID: 929282741631677902, guid: 30159430e1ba0214cb6681d952579427,
-        type: 3}
       propertyPath: m_hasFontAssetChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2069216437048528431, guid: 30159430e1ba0214cb6681d952579427,
         type: 3}
@@ -321,7 +315,7 @@ PrefabInstance:
     - target: {fileID: 2069216437048528431, guid: 30159430e1ba0214cb6681d952579427,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.643
+      value: 0.764
       objectReference: {fileID: 0}
     - target: {fileID: 2069216437048528431, guid: 30159430e1ba0214cb6681d952579427,
         type: 3}
@@ -363,6 +357,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3710811056226027486, guid: 30159430e1ba0214cb6681d952579427,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 3710811056226027486, guid: 30159430e1ba0214cb6681d952579427,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 3710811056226027486, guid: 30159430e1ba0214cb6681d952579427,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.38
+      objectReference: {fileID: 0}
     - target: {fileID: 7688731111626630653, guid: 30159430e1ba0214cb6681d952579427,
         type: 3}
       propertyPath: _whenSelect.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -398,15 +407,14 @@ PrefabInstance:
       propertyPath: FirstListCreated.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 2125451291}
-    - target: {fileID: 9096877686981568679, guid: 30159430e1ba0214cb6681d952579427,
-        type: 3}
-      propertyPath: FirstListCreated.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7272231067754662736, guid: 30159430e1ba0214cb6681d952579427,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 30159430e1ba0214cb6681d952579427, type: 3}
 --- !u!4 &183002027 stripped
 Transform:
@@ -773,6 +781,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3508754529731745315, guid: 929593ac43278644eb5481acc103f3b4,
         type: 3}
+      propertyPath: Speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508754529731745315, guid: 929593ac43278644eb5481acc103f3b4,
+        type: 3}
       propertyPath: objectCollider
       value: 
       objectReference: {fileID: 183002029}
@@ -835,6 +848,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8530585892240797599, guid: 929593ac43278644eb5481acc103f3b4,
+        type: 3}
+      propertyPath: Speed
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8530585892240797599, guid: 929593ac43278644eb5481acc103f3b4,
         type: 3}
