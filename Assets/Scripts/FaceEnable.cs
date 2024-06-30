@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class FaceEnable : MonoBehaviour
 {
-  public List<GameObject> objectsToEnable;
-  public List<GameObject> objectsToDissable;
-   public void ToggleFace(bool enable){
-    foreach (var obj in objectsToEnable)
+    public List<GameObject> objectsToEnable;
+    public List<GameObject> objectsToDissable;
+    public void ToggleFace(bool enable)
     {
-      obj.SetActive(enable);
-    }
+        foreach (GameObject obj in objectsToEnable)
+        {
+            obj.SetActive(enable);
+        }
 
-    foreach (var obj in objectsToDissable)
-    {
-      obj.SetActive(!enable);
+        foreach (GameObject obj in objectsToDissable)
+        {
+            obj.SetActive(!enable);
+        }
     }
-   }
 }
