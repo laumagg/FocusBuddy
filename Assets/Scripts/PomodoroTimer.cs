@@ -8,7 +8,7 @@ public class Timer : MonoBehaviour
 {
     public UnityEvent onStartTimer;
     public UnityEvent onEndTimer;
-   
+
     public UnityEvent onEndBreak;
     public UnityEvent onBreakStart;
     public UnityEvent onPauseStart;
@@ -18,7 +18,7 @@ public class Timer : MonoBehaviour
     public float breakTimer = 240;//240  -- 4min
     private float remainingTimer;
     public GameObject pomodoroObject;
-   
+
     private IEnumerator coroutine;
     private float elapsedSeconds;
     private float angle;
@@ -26,48 +26,53 @@ public class Timer : MonoBehaviour
     private float seconds;
     public TMP_Text mText;
     private bool isBreak = false;
-     public bool isPaused = false;
-     public bool isResume = false;
-     private AudioSource audio;
-     private float displayTime;
-    
+    public bool isPaused = false;
+    public bool isResume = false;
+    private AudioSource audio;
+    private float displayTime;
+
     private void Start()
     {
-      audio = GetComponent<AudioSource>();
-      initTimer();
-      //StartTimer();//TODO: remove, starts with interaction
+        audio = GetComponent<AudioSource>();
+        initTimer();
+        //StartTimer();//TODO: remove, starts with interaction
     }
 
-    private void Update(){
-       if (Input.GetKeyDown("space"))
+    private void Update()
+    {
+        if (Input.GetKeyDown("space"))
         {
-          if(!isPaused){
-            StartTimer();
-          }
-          else{
-            ResumeTimer();
-          }
-           
+            if (!isPaused)
+            {
+                StartTimer();
+            }
+            else
+            {
+                ResumeTimer();
+            }
+
         }
-        if(Input.GetKeyDown("return"))
+        if (Input.GetKeyDown("return"))
         {
-           PauseTimer();
+            PauseTimer();
         }
     }
-    private void initTimer(){
-      elapsedSeconds = 0;
+    private void initTimer()
+    {
+        elapsedSeconds = 0;
     }
 
-    public void StartTimer(){
+    public void StartTimer()
+    {
         onStartTimer.Invoke();
-        currentTimerInSeconds=pomodoroTimer;
+        currentTimerInSeconds = pomodoroTimer;
         isBreak = false;
 
         coroutine = timer(pomodoroTimer);
         StartCoroutine(coroutine);
     }
 
-     public void ResumeTimer()
+    public void ResumeTimer()
     {
         if (isPaused)
         {
@@ -75,59 +80,63 @@ public class Timer : MonoBehaviour
             isPaused = false;
             onPauseEnd.Invoke();
             StartCoroutine(coroutine);
-            
+
         }
     }
 
-    public void StartBreak(){
-        onEndTimer.Invoke();
-        if(!isBreak){
-          currentTimerInSeconds=breakTimer;
-          isBreak = true;
-          coroutine = timer(breakTimer);
-          StartCoroutine(coroutine);
+    public void StartBreak()
+    {
+        onBreakStart.Invoke();
+        if (!isBreak)
+        {
+            currentTimerInSeconds = breakTimer;
+            isBreak = true;
+            coroutine = timer(breakTimer);
+            StartCoroutine(coroutine);
         }
-        else{
-          onEndBreak.Invoke();
-          return;
+        else
+        {
+            onEndBreak.Invoke();
+            return;
         }
     }
 
-      public void PauseTimer()
+    public void PauseTimer()
     {
         if (coroutine != null)
         {
-          onPauseStart.Invoke();
+            onPauseStart.Invoke();
 
             StopCoroutine(coroutine);
             isPaused = true;
         }
     }
 
-    private IEnumerator timer(float time){
-      Debug.Log("Start");
-      audio.Play();
-      while (elapsedSeconds < time)
-      {
-        if (isPaused)
+    private IEnumerator timer(float time)
+    {
+        Debug.Log("Start");
+        audio.Play();
+        while (elapsedSeconds < time)
+        {
+            if (isPaused)
             {
                 yield break; // Exit the coroutine if paused
             }
-        DisplayTime(elapsedSeconds);
-        //waiting 1 second in real time and increasing the timer value
-        yield return new WaitForSecondsRealtime(1);
-        //Debug.Log("elapsed time:" + elapsedSeconds);
-        elapsedSeconds++;
-      }
-      StartBreak();
+            DisplayTime(elapsedSeconds);
+            //waiting 1 second in real time and increasing the timer value
+            yield return new WaitForSecondsRealtime(1);
+            //Debug.Log("elapsed time:" + elapsedSeconds);
+            elapsedSeconds++;
+        }
+        StartBreak();
     }
 
     void DisplayTime(float timeToDisplay)
     {
         timeToDisplay += 1;
-        
-        float minutes = Mathf.FloorToInt(currentTimerInSeconds - (timeToDisplay / 60)); 
-        
+
+        float minutes = Mathf.FloorToInt(currentTimerInSeconds - (timeToDisplay / 60));
+
         float seconds = Mathf.FloorToInt((60 - (timeToDisplay % 60)) % 60);
 
         mText.text = string.Format("{0:00}:{1:00}", minutes, seconds);

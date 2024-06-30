@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class FlowMaster : MonoBehaviour
@@ -49,5 +50,13 @@ public class FlowMaster : MonoBehaviour
     public void ToggleRotation(bool enable)
     {
         RotationCollider.enabled = enable;
+    }
+
+    public async void DelayBeforePT(int seconds)
+    {
+        await Task.Delay(seconds * 1000);
+        // Timer starts break status
+        Timer timer = FindAnyObjectByType<Timer>();
+        timer.StartBreak();
     }
 }

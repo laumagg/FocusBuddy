@@ -199,7 +199,7 @@ Transform:
   m_GameObject: {fileID: 1980034480164852302}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.97, y: 0.101, z: -0.179}
+  m_LocalPosition: {x: -0.33, y: 0.101, z: 0.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -285,18 +285,6 @@ MonoBehaviour:
   onEndTimer:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1234190762904547549}
-        m_TargetAssemblyTypeName: FaceEnable, Assembly-CSharp
-        m_MethodName: ToggleFace
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 7792582912698352588}
         m_TargetAssemblyTypeName: RewardBehaviour, Assembly-CSharp
         m_MethodName: GiveReward
@@ -317,6 +305,30 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: FlowMaster, Assembly-CSharp
+        m_MethodName: ToggleFaceParts
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: FlowMaster, Assembly-CSharp
+        m_MethodName: DelayBeforePT
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 10
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -937,18 +949,6 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FlowMaster, Assembly-CSharp
-        m_MethodName: ToggleRotation
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: FlowMaster, Assembly-CSharp
         m_MethodName: RemoveAwaker
         m_Mode: 1
         m_Arguments:
@@ -1060,6 +1060,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioSource: {fileID: 4367697175275979035}
   Animator: {fileID: 2922900003903263661}
+  AudioFinished:
+    m_PersistentCalls:
+      m_Calls: []
   DesiredVoice: 2
   TestInput: Welcome young man
 --- !u!114 &1382842862344485565
@@ -1125,6 +1128,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: FlowMaster, Assembly-CSharp
+        m_MethodName: ToggleRotation
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
   conversator: {fileID: 8037026383439439349}
   tasksObjectParent: {fileID: 1964663585144585753}
