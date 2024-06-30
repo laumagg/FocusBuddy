@@ -32,7 +32,9 @@ public class SettingsUI : MonoBehaviour
     }
     private void OnSaveFocusAreasPoked(InteractableStateChangeArgs args)
     {
-        if (args.NewState == InteractableState.Select)
-            OnSaveAllFocusAreas?.Invoke();
+        if (args.NewState != InteractableState.Select) return;
+
+        OnSaveAllFocusAreas?.Invoke();
+        gameObject.SetActive(false);
     }
 }
