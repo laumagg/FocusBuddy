@@ -462,6 +462,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 814144261995187135, guid: 30159430e1ba0214cb6681d952579427,
         type: 3}
+      propertyPath: onEndBreak.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1304760983}
+    - target: {fileID: 814144261995187135, guid: 30159430e1ba0214cb6681d952579427,
+        type: 3}
+      propertyPath: onEndBreak.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1304760980}
+    - target: {fileID: 814144261995187135, guid: 30159430e1ba0214cb6681d952579427,
+        type: 3}
+      propertyPath: onEndBreak.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1304760983}
+    - target: {fileID: 814144261995187135, guid: 30159430e1ba0214cb6681d952579427,
+        type: 3}
       propertyPath: onEndTimer.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1304760980}
@@ -473,6 +488,16 @@ PrefabInstance:
     - target: {fileID: 814144261995187135, guid: 30159430e1ba0214cb6681d952579427,
         type: 3}
       propertyPath: onEndTimer.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 1304760983}
+    - target: {fileID: 814144261995187135, guid: 30159430e1ba0214cb6681d952579427,
+        type: 3}
+      propertyPath: onBreakStart.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1304760983}
+    - target: {fileID: 814144261995187135, guid: 30159430e1ba0214cb6681d952579427,
+        type: 3}
+      propertyPath: onStartTimer.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1304760983}
     - target: {fileID: 892476313723150968, guid: 30159430e1ba0214cb6681d952579427,
@@ -1446,12 +1471,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tts: {fileID: 1767420451}
-  welcomeMessage: Hi, I am Tommy. You will keep me.
-  ptTutorialMessage: Let us create focus areas
-  goodJobMessage: Good Job
-  rotateTutorialMessage: Spin my head right round
-  rewardMessage: Your earned a tomato. Let us make a pause.
-  restartMessage: Time to go work back, my slave
   Compliments:
   - You're not someone I pretend not to see in public.
   - If you were a vegetable, you'd be a cute-cumber.
