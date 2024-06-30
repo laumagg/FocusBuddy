@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetDeviceTypes: 020000000300000004000000
   allowOptional3DofHeadTracking: 0
-  handTrackingSupport: 1
-  handTrackingFrequency: 1
+  handTrackingSupport: 2
+  handTrackingFrequency: 0
   handTrackingVersion: 2
   anchorSupport: 1
   sharedAnchorSupport: 0
