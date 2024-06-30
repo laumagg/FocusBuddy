@@ -1,11 +1,25 @@
+using Oculus.Interaction;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class ButtonAnimation : MonoBehaviour
 {
+    [SerializeField] private PokeInteractable interactable;
     [SerializeField] private float duration = 0.1f;
     [SerializeField] private float distance = 0.015f;
+
+    private void OnEnable()
+    {
+        interactable.WhenStateChanged += OnStateChanged;
+    }
+    private void OnStateChanged(InteractableStateChangeArgs args)
+    {
+        if (args.NewState == InteractableState.Select)
+            Push();
+        if (args.NewState == InteractableState.Normal)
+            Pull();
+    }
 
     [ContextMenu("Push")]
     public void Push()
