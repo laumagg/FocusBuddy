@@ -11,7 +11,7 @@ public class SettingsUI : MonoBehaviour
 
     //Events
     [HideInInspector] public UnityEvent OnAddFocusArea = new();
-    [HideInInspector] public UnityEvent OnSaveAllFocusAreas = new();
+     public UnityEvent OnSaveAllFocusAreas = new();
     [HideInInspector] public UnityEvent OnResetAllFocusAreas = new();
 
     private void OnEnable()
