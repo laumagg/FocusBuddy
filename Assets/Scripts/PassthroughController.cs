@@ -96,7 +96,7 @@ public class PassthroughController : MonoBehaviour
         foreach (FocusAreaUI areaUI in _focusAreas)
         {
             if (areaUI != null)
-                areaUI.SaveSelf(new());
+                areaUI.SaveSelf();
         }
     }
 
@@ -120,7 +120,7 @@ public class PassthroughController : MonoBehaviour
             if (overlayPt.IsSurfaceGeometry(areaUI.PTSurface))
                 overlayPt.RemoveSurfaceGeometry(areaUI.PTSurface);
 
-            areaUI.RemoveSelf(new());
+            areaUI.RemoveSelf();
         }
 
         _focusAreas.Clear();

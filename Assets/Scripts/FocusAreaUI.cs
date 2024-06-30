@@ -1,4 +1,5 @@
 using Oculus.Interaction;
+using System;
 using UnityEngine;
 
 public class FocusAreaUI : MonoBehaviour
@@ -20,27 +21,38 @@ public class FocusAreaUI : MonoBehaviour
         SaveButtonInteractable.WhenStateChanged -= SaveSelf;
         RemoveButtonInteractable.WhenStateChanged -= RemoveSelf;
     }
+    public void RemoveSelf()
+    {
+        Destroy(gameObject, .3f);
+    }
 
-
-    public void RemoveSelf(InteractableStateChangeArgs args)
+    private void RemoveSelf(InteractableStateChangeArgs args)
     {
         //Remove anchors?
-        if (args.NewState == InteractableState.Select)
-            Destroy(gameObject, .3f);
+        if (args.NewState != InteractableState.Select) return;
+
+        RemoveSelf();
     }
-    public void SaveSelf(InteractableStateChangeArgs args)
+    public void SaveSelf()
+    {
+        sideButtonsParent.SetActive(false);
+        mover.enabled = false;
+    }
+    private void SaveSelf(InteractableStateChangeArgs args)
     {
         //Create anchors?
         if (args.NewState != InteractableState.Select) return;
 
-        sideButtonsParent.SetActive(false);
-        mover.enabled = false;
+        SaveSelf();
+
     }
 
     #region Testing
     [ContextMenu("RemoveSelf_CM")]
-    public void RemoveSelf_CM() { RemoveSelf(new()); }
+    public void RemoveSelf_CM() { RemoveSelf(); }
+
+
     [ContextMenu("SaveSelf_CM")]
-    public void SaveSelf_CM() { SaveSelf(new()); }
+    public void SaveSelf_CM() { SaveSelf(); }
     #endregion
 }
