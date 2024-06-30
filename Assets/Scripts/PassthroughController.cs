@@ -19,6 +19,7 @@ public class PassthroughController : MonoBehaviour
 
     [Header("Others")]
     [SerializeField] private SettingsUI settingsUI;
+    [SerializeField] private Timer pomodoroTimer;
 
     private List<FocusAreaUI> _focusAreas = new();
 
@@ -35,7 +36,11 @@ public class PassthroughController : MonoBehaviour
     }
     private void OnEnable()
     {
-        //TODO trigger changing opacity from Pomodoro timer
+        //Pomodoro timer
+        pomodoroTimer.onBreakStart.AddListener(() => StartCoroutine(ChangeOpacity(1)));
+        pomodoroTimer.onStartTimer.AddListener(() => StartCoroutine(ChangeOpacity(defaultOpacity)));
+
+        //Settings
         settingsUI.OnAddFocusArea.AddListener(SpawnNewFocusArea);
         settingsUI.OnResetAllFocusAreas.AddListener(RemoveAllFocusAreas);
         settingsUI.OnSaveAllFocusAreas.AddListener(SaveFocusAreas);
