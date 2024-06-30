@@ -11,7 +11,7 @@ public class HandTrackingRotateYWithPinch : MonoBehaviour
     public Vector3 DesiredAxis = Vector3.up;
 
     public UnityEvent StartRotation;
-    public UnityEvent StopRotation;
+    //public UnityEvent StopRotation;
 
     public Transform objectToRotate;
     public Collider objectCollider;
@@ -33,6 +33,8 @@ public class HandTrackingRotateYWithPinch : MonoBehaviour
     private Vector3 previousHandPosition;
 
     public bool inCollider;
+
+    public bool startedRotation;
 
     void Start()
     {
@@ -57,7 +59,11 @@ public class HandTrackingRotateYWithPinch : MonoBehaviour
 
         float rotationY = Math.Abs(handMovement.x) * 100f * Speed;
 
-        StartRotation.Invoke();
+        if (!startedRotation)
+        {
+            StartRotation.Invoke();
+            startedRotation = true;
+        }
 
         objectToRotate.Rotate(DesiredAxis, rotationY * Time.deltaTime);
     }
